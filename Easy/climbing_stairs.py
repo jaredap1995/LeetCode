@@ -4,7 +4,7 @@ Each time you can either climb 1 or 2 steps. In how many distinct ways can you c
 
 
 #Fibonacci sequence solution. Computationally expensive for large numbers dur to recursion
-class Solution:
+class Solution_:
     def climbStairs(self, n):
         if n==1:
             return 1
@@ -15,7 +15,7 @@ class Solution:
         
 
 n=9
-print(Solution().climbStairs(n))
+print(Solution_().climbStairs(n))
 
 
 #Dynamic Programming solution where variables are stored in a list and then used to calculate the next value
