@@ -32,24 +32,29 @@ class Solution_incorrect(object):
                 length+=1
         return max_length
     
-print(Solution_incorrect().longest_string(s)) 
+# print(Solution_incorrect().longest_string(s)) 
 
+s = "abcabcbb"
 
 def lengthOfLongestSubstring(s: str) -> int:
-    if s == "":
-        return 0
-    start = 0
-    end = 0
-    maxLength = 0
-    unique_characters = set()
-    while end < len(s):
-        if s[end] not in unique_characters:
-            unique_characters.add(s[end])
-            end += 1
-            maxLength = max(maxLength, len(unique_characters))
-        else:
-            unique_characters.remove(s[start])
-            start += 1
-    return maxLength
+    longest=0
+    indexes={}
+    offset=0
+    for i in range(len(s)):
+        char=s[i]
+        index=indexes.get(char)
+        if index is not None and index >= offset:
+            length = i-offset
+            offset= index+1
+            if length > longest:
+                longest=length
+        indexes[char]=i
+
+    return max(longest, (len(s)-offset))
+    
+
+print(lengthOfLongestSubstring(s))
+    
+
 
 
