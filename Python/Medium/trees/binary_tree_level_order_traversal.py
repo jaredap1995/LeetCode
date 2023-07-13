@@ -37,6 +37,6 @@ class Solution(object):
                 if node.right is not None:
                     queue.append(node.right)
 
-            solution.append(queue)
+            solution.append(temp)
 
         return solution
