@@ -13,11 +13,16 @@ var goodNodes = function (root) {
     good = 0
     max_ = root.val
     var dfs = (root) => {
-        if (!root.val) {return}
-        left_max = dfs(root.left)
-        right_max = dfs(root.right)
-        if (root.val < max_) {return}
-        else {good ++}
-        return
+        if (!root) {return}
+
+        if (root.val >= max_){
+            good++
+            max_ = root.val
+        }
+
+        dfs(root.left)
+        dfs(root.right)
     }
+    dfs(root, max_)
+    return good
 }
