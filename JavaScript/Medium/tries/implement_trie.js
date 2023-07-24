@@ -1,6 +1,4 @@
 
-
-
 function TrieNode (children, isEnd) {
     this.children = new Object()
     this.isEnd = false
