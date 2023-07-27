@@ -1,11 +1,15 @@
 class Solution(object):
-    def subset(self, nums):
+    def subsets(self, nums):
         result = []
-        backtrack([], 0)
-
-        def backtrack(current, start_index):
-            result.append(current)
-            for i in range(len(nums)-1):
-                backtrack(current.append(nums[i], start_index))
         
+        def backtrack(i, current):
+            if i >=len(nums):
+                result.append(current.copy())
+                return
+            current.append(nums[i])
+            backtrack(i+1, current)
+
+            current.pop()
+            backtrack(i+1, current)
+        backtrack(0, [])
         return result
