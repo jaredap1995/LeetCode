@@ -17,12 +17,12 @@ var permute = function (nums) {
         for (let i = 0; i<nums.length; i++) {
             if (!visited.has(i)) {
                 visited.add(i)
-                backtrack(result, visited, subset, nums)
-                visited.remove(i)
+                backtrack(result, visited, subset.concat([nums[i]]), nums)
+                visited.delete(i)
             }
         }
     }
 
-    
-
+    backtrack(result, visited, [], nums)
+    return result
 }
