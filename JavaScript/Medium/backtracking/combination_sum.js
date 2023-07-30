@@ -11,7 +11,7 @@ var combinationSum = (candidates, target) =>{
             return
         }
         if (current_sum === target){
-            result.push(current.copyWithin())
+            result.push([...current])
             return
         }
         for (let i = 0; start<candidates.length; i++){
