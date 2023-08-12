@@ -7,8 +7,6 @@ class Solution:
 
         n=len(cost)
         dp = [0]*(n+1)
-        dp[n]=0
-        print(dp)
 
         for i in range(n-1, -1, -1):
             if i == n-1:
