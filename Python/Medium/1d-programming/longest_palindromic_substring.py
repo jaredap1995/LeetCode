@@ -15,7 +15,7 @@ class Solution:
                             longest=s[i:j+1]
 
         return dp_table, longest
-
     
+
 s="ababc"
 print(Solution.longestPalindrome(s))
