@@ -7,7 +7,7 @@ class Solution:
         for i in range(1, n+1):
             for word in word_dict:
                 print(dp[i-len(word)])
-                if i-len(word)> 0 and dp[i-len(word)] and s[i-len(word):i] == word:
+                if i-len(word)>= 0 and dp[i-len(word)] and s[i-len(word):i] == word:
                     dp[i]= True
                     break
 
