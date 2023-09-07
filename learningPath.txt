@@ -1,0 +1,11 @@
+Sorting Algorithms: This is where you're currently at. Understanding the mechanics, advantages, and disadvantages of various sorting algorithms provides a solid foundation for understanding algorithmic trade-offs.
+Search Algorithms: These algorithms are designed to locate a specific item within a data structure.
+Data Structures: Learn about fundamental data structures like arrays, linked lists, stacks, queues, trees, and graphs. For each data structure, understand their properties, use-cases, and associated operations.
+Graph Algorithms: These include algorithms for traversing, searching, and finding shortest paths in graphs.
+Dynamic Programming: This is a method for solving problems by breaking them down into simpler sub-problems. It's particularly useful for optimization problems.
+Divide and Conquer Algorithms: This is a top-down approach to solving problems by breaking them into smaller sub-problems and solving each one.
+Greedy Algorithms: These algorithms make locally optimal choices at each stage with the hope of finding a global optimum.
+Backtracking Algorithms: This is a trial and error-based approach used for optimization problems.
+String Matching and Parsing Algorithms: Useful for text search, DNA sequence alignment, and many other applications.
+Computational Geometry Algorithms: Useful for problems related to the geometry of numbers, shapes, and spaces.
+Network Flow Algorithms: Useful for problems like the maximum flow problem in networks.

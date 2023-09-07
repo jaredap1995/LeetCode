@@ -1,4 +1,4 @@
 # LeetCode
 
 
-LeetCode practice problems and solutions
+LeetCode & HackerRank problems & solutions and basic algorithims
