@@ -10,3 +10,11 @@ def LIS(nums):
                 dp[i] = max(dp[i], dp[j+1])
 
     return max(dp)
+
+t=[None]*5
+c=0
+for val in t:
+    if val:
+        c+=1
+
+print(c)
