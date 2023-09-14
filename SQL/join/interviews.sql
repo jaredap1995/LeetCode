@@ -12,32 +12,38 @@ WITH user_challenges AS (
 ), 
 view_subCTE AS (
     SELECT
-        s.challenge_id,  
-        s.total_submissions,
-        s.total_accepted_submissions,
-        v.total_views,
-        v.total_unique_views
-    FROM submission_stats s
-    JOIN view_stats v ON v.challenge_id = s.challenge_id
-    GROUP BY s.challenge_id
+        challenge_id,  
+        sum(total_submissions) as total_submissions,
+        sum(total_accepted_submissions) as total_accepted_submissions
+    FROM submission_stats 
+    GROUP BY challenge_id
+),
+view_cte as (
+    SELECT 
+        challenge_id,
+        sum(total_views) as total_views,
+        sum(total_unique_views) as total_unique_views
+    FROM view_stats
+    GROUP BY challenge_id
 )
 SELECT 
     u.contest_id,
     u.hacker_id,
     u.name, 
-    SUM(vs.total_submissions) AS total_submissions, 
-    SUM(vs.total_accepted_submissions) AS total_accepted_submissions, 
-    SUM(vs.total_views) AS total_views, 
-    SUM(vs.total_unique_views) AS total_unique_views
+    SUM(ISNULL(s.total_submissions, 0)) AS total_submissions, 
+    SUM(ISNULL(s.total_accepted_submissions, 0)) AS total_accepted_submissions, 
+    SUM(ISNULL(v.total_views, 0)) AS total_views, 
+    SUM(ISNULL(v.total_unique_views, 0)) AS total_unique_views
 FROM user_challenges u
-LEFT JOIN view_subCTE vs ON vs.challenge_id = u.challenge_id
-WHERE (
-    vs.total_submissions >0 AND 
-    vs.total_accepted_submissions > 0 AND 
-    vs.total_views > 0 AND 
-    vs.total_unique_views > 0
-)
+LEFT JOIN view_subCTE s ON s.challenge_id = u.challenge_id
+LEFT JOIN view_cte v on v.challenge_id = u.challenge_id
 GROUP BY u.contest_id, u.hacker_id, u.name
+HAVING (
+    sum(isnull(s.total_submissions,0)) + 
+    sum(isnull(s.total_accepted_submissions, 0)) + 
+    sum(isnull(v.total_view,0))+
+    sum(isnull(v.total_unique_views,0))
+) > 0
 ORDER BY u.contest_id;
 
 
