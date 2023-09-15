@@ -24,5 +24,39 @@ class Solution:
                     dfs(i,j)
         
         return res
+    
 
-        
+
+
+
+from collections import deque
+
+
+
+class Solution:
+    def numIsland(self, grid):
+        directions = [(0,1), (1,0), (-1,0), (0,-1)]
+        rows = len(grid)
+        cols = len(grid[0])
+
+        def bfs(i,j):
+            q=deque()
+            q.append((i,j))
+            while q:
+                curRow, curCol = q.popleft()
+                for dx, dy in directions:
+                    r = curRow + dx
+                    c = curCol + dy
+                    if r in range(rows) and c in range(cols) and grid[r][c]=='1':
+                        grid[r][c]=='/'
+                        q.append((r,c))
+            return grid
+
+        count = 0
+        for i in range(rows):
+            for j in range(cols):
+                if grid[i][j] == '1':
+                    bfs(i,j)
+                    count+1
+
+        return count
