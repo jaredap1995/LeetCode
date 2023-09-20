@@ -5,7 +5,7 @@ class Solution:
         start = image[sr][sc]
 
         def DFSsearch(i,j):
-            if i < 0 or j < 0 or i >=m or j >= n :
+            if i < 0 or j < 0 or i >=m or j >= n or image[i][j] == color :
                 return
             
             image[i][j] = color
