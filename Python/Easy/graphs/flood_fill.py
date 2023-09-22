@@ -2,10 +2,9 @@ class Solution:
     def floodFill(image, sr, sc, color):
         m = len(image)
         n = len(image[0])
-        start = image[sr][sc]
 
         def DFSsearch(i,j):
-            if i < 0 or j < 0 or i >=m or j >= n or image[i][j] == color :
+            if i < 0 or j < 0 or i >=m or j >= n or image[i][j] == color:
                 return
             
             image[i][j] = color
