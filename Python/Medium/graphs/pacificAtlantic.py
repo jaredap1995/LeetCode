@@ -28,7 +28,7 @@ class solution:
                 DFS(i-1,j,ocean,prevHeight)
             if j+1<n:
                 DFS(i,j+1, ocean, prevHeight)
-            if j-1>0:
+            if j>0:
                 DFS(i,j-1,ocean,prevHeight)
 
         for i in range(m):
