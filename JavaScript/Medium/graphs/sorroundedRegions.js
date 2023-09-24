@@ -12,7 +12,7 @@ var solve = function (board) {
     let col = board[0].length
 
     var DFS = (i,j) => {
-        if (i>=row-1 || j >=n-1 || i<=0 || j<=0 || board[i][j]!=='O') return
+        if (i>=row || j >=n || i<=0 || j<=0 || board[i][j]!=='O') return
 
         // Placeholder
         board[i][j]='A'
