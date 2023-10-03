@@ -5,7 +5,7 @@ def validTree(nodes, edges):
 
     for node1,node2 in edges:
         graph[node1].append(node2)
-        graph(node2).append(node1)
+        graph[node2].append(node1)
 
     visited = set()
     def DFS(root):
@@ -17,3 +17,8 @@ def validTree(nodes, edges):
 
     DFS(0)
     return len(visited)==nodes and len(edges)==nodes-1
+
+n=5
+edges=[[0,1], [1,2],[2,3],[1,3], [1,4]]
+
+print(validTree(n, edges))
