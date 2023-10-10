@@ -22,8 +22,7 @@ var solution = function(grid) {
 
      while (queue.length) {
         cur = queue.shift()
-        x=cur[0]
-        y=cur[1]
+        x=cur[0], y=cur[1]
         for (const [dx, dy] of directions) {
             new_x = x+dx
             new_y = y+dy
