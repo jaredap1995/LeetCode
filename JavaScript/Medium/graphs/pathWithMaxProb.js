@@ -14,7 +14,7 @@ var maxProbability = function(n, edges, succProb, start_node, end_node) {
         for (const [neighbor, neighborProb] of graph.get(curNode)){
             if ((curProb * neighborProb) > probs[neighbor]){
                 probs[neighbor] = curProb * neighborProb
-                queue.push([neighbor, prob[neighbor]])
+                queue.push([neighbor, probs[neighbor]])
             }
         }
     }
