@@ -38,3 +38,39 @@ var solution = function(recipes, ingredients, supplies){
 
     return result
 }
+
+
+var solution2DFS = function(recipes, ingredients, supplies){
+    let graph = {}
+    let canMake = {}
+
+    for (const supply of supplies) {
+        canMake[supply] = true
+    }
+
+    for (const recipe of recipes){
+        graph[recipe].push(ingredients)
+    }
+
+    var DFS = (food) => {
+        if (canMake.hasOwnProperty(food)) return canMake[food]
+        canMake[food] = false
+        if (graph.hasOwnProperty(food)){
+            for (const neighbor of graph[food]){
+                if (!DFS(neighbor)) return false
+            }
+        canMake[food] = true
+        }
+
+        return canMake[food]
+    }
+
+    let result = []
+    for (const food of foods) {
+        if (DFS(food)){
+            result.push(food)
+        }
+    }
+
+    return result
+}
