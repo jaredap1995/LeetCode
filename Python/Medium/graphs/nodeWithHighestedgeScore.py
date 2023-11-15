@@ -8,16 +8,3 @@ def solution(edges):
 
     return result.index(max(result))
 
-
-
-watchedVideos = [["A","B"],["C"],["B","C"],["D"]]
-friends = [[1,2],[0,3],[0,3],[1,2]]
-Output: ["B","C"] 
-graph = collections.defaultdict()
-n = len(friends)
-for i in range(n):
-    graph[i]=(watchedVideos[i], friends[i])
-
-cur = 0
-for tup in graph[cur]:
-    print(None, tup[1])
