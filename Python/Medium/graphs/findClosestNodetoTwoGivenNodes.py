@@ -24,7 +24,7 @@ def solution(edges, node1, node2):
     for i in range(n):
         if distances1[i] != -1 and distances2[i] != -1:
             max_val = max(distances1[i], distances2[i])
-            if max_val< min_value:
+            if max_val < min_value:
                 min_value = max_val
                 result = i
 
