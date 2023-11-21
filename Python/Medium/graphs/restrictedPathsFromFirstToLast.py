@@ -3,36 +3,43 @@ from functools import lru_cache
 from heapq import heappop, heappush
 class Solution:
     def countRestrictedPaths(self, n: int, edges) -> int:
-        g, mod = collections.defaultdict(list), 10 ** 9 + 7
-        # dfs + memo
+        # Create graph
+        graph = collections.defaultdict(list)
+        mod = 10**9+7
 
-        @lru_cache(None)
-        def dfs(cur):
-            if cur == n:
-                return 1
-            res = 0
-            for (nei, w) in g[cur]:
-                # no need  to maintain set, it's impossible to go back
-                if dist[cur] > dist[nei]: 
-                    res += dfs(nei)
-            return res
-        # dijkstra
-        for u, v, w in edges:
-            g[u].append((v, w))
-            g[v].append((u, w))
-        
-        dist = [float('inf')] * (n + 1)
-        dist[n] = 0
+        for n1,n2, weight in edges:
+            graph[n1].append((n2, weight))
+            graph[n2].append((n1, weight))
+
+        # Dijkstra algorithim using heapq
+        distances = [float('inf')]*(n+1)
+        # set node n to 0 as distance to istelf is zero
+        distances[n]=0
         visited = set()
-        pq = [(0, n)]
+        # distance, node...pq is default a min priority queue and uses the first value (0 in thios case)
+        pq = [(0,n)]
+
         while pq:
-            d, cur = heappop(pq)
+            dist, cur = heappop(pq)
             visited.add(cur)
-            for (nei, w) in g[cur]:
-                if nei not in visited:
-                    new_dist = d + w
-                    if new_dist < dist[nei]:
-                        heappush(pq, (new_dist, nei))
-                        dist[nei] = new_dist
-        res = dfs(1)
+            for neighbor, weight in graph[cur]:
+                if neighbor not in visited:
+                    new_dist = dist + weight
+                    if new_dist < distances[neighbor]:
+                        distances[neighbor] = new_dist
+                        heappush(pq, (new_dist, neighbor))
+
+        # DFS w/memo
+        @lru_cache(None)
+        def DFS(node):
+            if node == n:
+                return 1
+            
+            res = 0
+            for neighbor , _ in graph[node]:
+                if distances[neighbor] < distances[node]:
+                    res += DFS(neighbor)
+            return res
+
+        res = DFS(1)
         return res % mod
