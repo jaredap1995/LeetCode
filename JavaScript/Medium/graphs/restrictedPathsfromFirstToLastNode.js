@@ -42,5 +42,5 @@ var solution = function(n, edges) {
         return dp[cur] = counter
     }
 
-    DFS(1, distances[1])
+    return DFS(1, distances[1])
 }
