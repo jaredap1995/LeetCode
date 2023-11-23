@@ -38,9 +38,11 @@ class Solution:
         que = collections.deque([(0, -1, profit_ini)])
         depth = 0
         while que:
+            # For loop is to make sure we iterate over every node in level before moving on to next level and seperate nodes on each level with depth counter
             for _ in range(len(que)):
                 cur, parent, profit = que.pop(0)
                 
+                # Not the root node and it only has one connection == leaf node ==> update potential answer
                 if cur != 0 and len(graph[cur]) == 1:
                     ans = max(ans, profit)
                 
