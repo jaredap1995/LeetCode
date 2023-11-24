@@ -79,33 +79,33 @@ amount = [4664,5822,-9152,7258,-5468,4698,2568,9880,-4046,9884,-3540,-2260,5264,
 
 console.log(mostProfitablePath__Incorrect(edges, bob, amount))
 
-// var correctSolution = function(edges, bob, amount){
-//     let n = amount.length
-//     let graph = new Array(n).fill(0).map(() => [])
+var correctSolution = function(edges, bob, amount){
+    let n = amount.length
+    let graph = new Array(n).fill(0).map(() => [])
 
-//     for (const [n1,n2] of edges){
-//         graph[n1].push(n2)
-//         graph[n2].push(n1)
-//     }
+    for (const [n1,n2] of edges){
+        graph[n1].push(n2)
+        graph[n2].push(n1)
+    }
 
-//     var DFS = (node, parent, time) => {
-//         let totalBob = node == bob ? 0: Infinity
-//         let newScore = -Infinity
+    var DFS = (node, parent, time) => {
+        let totalBob = node == bob ? 0: Infinity
+        let newScore = -Infinity
 
-//         for (const neighbor of graph[node]){
-//             if (neighbor === parent) continue
+        for (const neighbor of graph[node]){
+            if (neighbor === parent) continue
 
-//             const [score, bobTime] = DFS(neighbor, node, time +1)
-//             totalBob = Math.min(totalBob, bobTime)
-//             newScore = Math.max(score, newScore)
-//         }
+            const [score, bobTime] = DFS(neighbor, node, time +1)
+            totalBob = Math.min(totalBob, bobTime)
+            newScore = Math.max(score, newScore)
+        }
 
-//         if (newScore === -Infinity) newScore = 0
-//         if (time < totalBob) newScore += amount[node]
-//         else if (time === bobTime) newScore += amount[node] /2
+        if (newScore === -Infinity) newScore = 0
+        if (time < totalBob) newScore += amount[node]
+        else if (time === bobTime) newScore += amount[node] /2
 
-//         return [newScore, totalBob]
-//     }
+        return [newScore, totalBob]
+    }
 
-//     return DFS(0,-1,0)[0]
-// }
+    return DFS(0,-1,0)[0]
+}
