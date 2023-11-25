@@ -1,7 +1,7 @@
 import collections
 def solution(vals, edges, k):
     if k == 0:
-        return [0]
+        return vals[0]
 
     graph = collections.defaultdict(list)
 
@@ -9,7 +9,8 @@ def solution(vals, edges, k):
         graph[n1].append(n2)
         graph[n2].append(n1)
 
-    sorted_vals = sorted(graph, key= lambda x: vals[x], reverse=True)
+    for key, val in graph.items():
+        graph[key] = sorted(val, key = lambda x: vals[x], reverse=True)
 
     maxStar = float('-inf')
     for i in range(len(vals)):
