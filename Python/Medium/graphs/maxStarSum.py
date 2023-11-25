@@ -1,5 +1,8 @@
 import collections
 def solution(vals, edges, k):
+    if k == 0:
+        return [0]
+
     graph = collections.defaultdict(list)
 
     for n1, n2 in edges:
@@ -13,8 +16,8 @@ def solution(vals, edges, k):
         maxNodes = graph[i][:k]
         curMax = vals[i]
         for node in maxNodes:
-            if curMax + vals[node] > curMax:
-                curMax = curMax + vals[node]
+            if (curMax + vals[node]) > curMax:
+                curMax += vals[node]
 
         if curMax > maxStar:
             maxStar = curMax
