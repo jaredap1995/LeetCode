@@ -2,7 +2,7 @@ import { MinPriorityQueue } from 'collections.js';
 
 var solutionDijskstra = function(n, flights, src, dst, k) {
     let graph = new Array(n).fill(0).map(() => [])
-    for (const [n1,n2, weight] of edges){
+    for (const [n1,n2, weight] of flights){
         graph[n1].push([n2, weight])
     }
 
