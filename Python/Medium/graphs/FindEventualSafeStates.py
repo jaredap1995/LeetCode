@@ -14,7 +14,7 @@ def solution(graph):
     result = []
 
     def DFS(node):
-        if visited[node] >0:
+        if visited[node] > 0:
             return visited[node] ==2
         
         visited[node]=1
