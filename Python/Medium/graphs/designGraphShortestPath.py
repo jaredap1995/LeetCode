@@ -6,7 +6,7 @@ class Graph:
         self.edges = edges
 
         self.graph = collections.defaultdict(list)
-        for n1,n2,weight in edges:
+        for n1,n2,weight in self.edges:
             self.graph[n1].append((n2, weight))
 
     def addEdge(self, edge):
@@ -22,10 +22,10 @@ class Graph:
 
             if cur == node2: return cost
 
-            if cost > minDists[node2]: continue
+            if cost > minDists[cur]: continue
 
             for neighbor, dist in self.graph[cur]:
-                newPath = dist + cur
+                newPath = dist + cost
                 if newPath < minDists[neighbor]:
                     minDists[neighbor] = newPath
                     heapq.heappush(pq, (newPath, neighbor))
