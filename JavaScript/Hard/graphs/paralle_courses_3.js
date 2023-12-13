@@ -38,3 +38,56 @@ var dfs_solution = function(n, relations, time) {
 
     return res
 }
+
+
+var BFS = function(n, relations, time){
+    let graph = new Array(n+1).fill(0).map(() => [])
+    let inDegree = new Array(n+1).fill(0)
+
+    for (const [n1,n2] of relations){
+        graph[n1].push(n2)
+        inDegree[n2] ++
+    }
+
+    let dist = [].concat(0, time)
+    let queue = Array.from({length: n}, (_, i) => i + 1).filter((val) => inDegree[val] === 0)
+
+    while (queue.length){
+        let cur = queue.shift()
+        for (const neighbor of graph[node]){
+            dist[neighbor] = Math.max(dist[neighbor], dist[cur] + time[neighbor-1])
+            inDegree[neighbor] --
+            if (inDegree[neighbor] === 0) {
+                queue.push(neighbor)
+            }
+        }
+    }
+
+    return Math.max(...dist)
+}
+
+
+var minHeap = function(n, relations, time){
+    let graph = new Array(n+1).fill(0).map(() => [])
+    let indegree = new Array(n+1).fill(0)
+
+    for (const [n1,n2] of relations){
+        graph[n1].push(n2)
+        indegree[n2] ++
+    }
+
+    let heap = new MinPriorityQueue({priority: x => x[0]})
+    time.unshift(0)
+    Array.from({length: n}, (_,i) => i + 1).filter(i => indegree[i] === 0)
+        .forEach((val) => heap.enqueue([time[val], val]))
+
+    while (!heap.isEmpty()){
+        var [time_, cur] = heap.dequeue().element;
+        for (const neighbor of graph[cur]){
+            indegree[neighbor] --
+            if (indegree[neighbor] === 0) heap.enqueue([time_ + time[neighbor], neighbor])
+        }
+    }
+
+    return time_
+}
