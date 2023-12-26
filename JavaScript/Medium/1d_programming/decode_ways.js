@@ -26,27 +26,31 @@ s='1104'
 numDecodings(s)
 
 
+var solution2 = function(s){
+    let decoder = new Set()
+    for (let i = 1; i< 27; i++){
+        decoder.add(i.toString())
+    }
 
+    let memo = {}
 
+    var dfs = (i) => {
+        if (i === s.length) return 1
+        if (s[i] === '0') return 0
+        if (memo[i] !== undefined) return memo[i]
 
+        let res = dfs(i+1)
 
+        if (i + 1 < s.length && decoder.has(s.substring(i, i+2))){
+            res = dfs(i+2)
+        }
 
+        memo[i] = res
+        return res
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    return dfs(0)
+}
 
 
 
