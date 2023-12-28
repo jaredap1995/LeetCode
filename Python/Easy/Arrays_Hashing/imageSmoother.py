@@ -15,7 +15,7 @@ class Solution:
 
             for r in range(top, bottom):
                 for c in range(left, right):
-                    total += img[row][col]
+                    total += img[r][c]
                     count += 1
 
             return total // count
