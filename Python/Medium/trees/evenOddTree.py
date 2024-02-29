@@ -4,8 +4,9 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+import collections
 class Solution:
-    def isEvenOddTree(self, root: Optional[TreeNode]) -> bool:
+    def isEvenOddTree(self, root) -> bool:
         queue = [(0, root)]
         g = collections.defaultdict(list)
         while queue:
