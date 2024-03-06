@@ -13,8 +13,8 @@ var hasCycle = (head: ListNode | null): boolean => {
 
     while (fast && fast.next){
         fast = fast.next.next
-        slow = slow.next
-        if (slow === fast) return false
+        slow = slow.next // Added null check here
+        if (slow === fast) return true
     }
 
     return false
