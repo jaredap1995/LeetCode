@@ -14,7 +14,7 @@ def solution(head):
         head = head.next
 
     head = dummy
-    pre = 0
+    pre = 0 
     while head:
         pre += head.val
         head.next = dic[pre].next
