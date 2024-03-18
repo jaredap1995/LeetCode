@@ -1,4 +1,4 @@
-def solution(nums):
+def solution(points):
     res = 0
     maxa = float('-inf')
     points = list(sorted(points), key = lambda x: x[1])
