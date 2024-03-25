@@ -1,18 +1,39 @@
-var findDuplicate = function(nums: number []): number {
-    let slow = nums[0]
-    let fast = nums[0]
+class ListNode {
+    val: number;
+    next: ListNode | null;
+    constructor(val: number, next: ListNode | null){
+        val = (val === undefined ? 0 : val)
+        next = (next === undefined ? null : next)
+    }
+}
 
-    while (true){
-        slow = nums[slow]
-        fast = nums[nums[fast]]
-        if (slow === fast) break
+var reorderList = function(head: ListNode | null): ListNode {
+    // Trvaerse whole list and find end
+    let fast = head.next
+    let l = 0
+    let slow = head
+    while (fast && fast.next !== null){
+        fast = fast.next.next
+        slow = slow.next
     }
 
-    fast = nums[0]
-    while (slow !== fast){
-        slow = nums[slow]
-        fast = nums[fast]
+    // Flip second half
+    let cur = slow
+    let end = null
+    while (cur){
+        let next = cur.next
+        cur.next = end
+        end = cur
+        cur = next
     }
 
-    return slow
+    // Trvarse starting from head again, alternating between first_half and second_half
+    let first_half = head
+    let second_half = end
+    while (first_half){
+        let tmp1 = first_half.next; let tmp2 = second_half.next
+        first_half.next = second_half
+        second_half.next = tmp1
+        first_half = tmp1; second_half = tmp2
+    }
 }
