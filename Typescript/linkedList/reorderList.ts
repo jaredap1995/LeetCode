@@ -7,7 +7,7 @@ class ListNode {
     }
 }
 
-var reorderList = function(head: ListNode | null): ListNode {
+var reorderList = function(head: ListNode | null): void {
     // Trvaerse whole list and find end
     let fast = head.next
     let l = 0
