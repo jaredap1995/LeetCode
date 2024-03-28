@@ -12,3 +12,5 @@ def solution(nums, k):
             hashmap[nums[left]] -= 1
             left += 1
         length = max(length, right - left + 1)
+
+    return length
