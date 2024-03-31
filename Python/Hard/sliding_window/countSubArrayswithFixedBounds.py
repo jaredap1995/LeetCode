@@ -16,3 +16,5 @@ def solution(nums, minK, maxK):
             if val == maxK:
                 maxl = right
             res += max(0, min(minl, maxl) - left + 1)
+
+    return res
