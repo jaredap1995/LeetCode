@@ -11,8 +11,8 @@ var sol = function(nums: number[], minK: number, maxK: number): number {
             minl = -1
             maxl  -1
         } else {
-            if (right === minK) minl = right
-            if (right === maxK) maxl = right
+            if (val === minK) minl = right
+            if (val === maxK) maxl = right
             res += Math.max(0, Math.min(minl, maxl) - left + 1)
         }
     }
